@@ -1,0 +1,31 @@
+---
+title: 👋 Introduction
+description: "One Material design system for kud's Android apps: what it fixes, what it leaves to each app."
+---
+
+Gamme is the Material design system for kud's Android apps: [tutti](https://github.com/kud/tutti), [pastille](https://github.com/kud/pastille), and the ones to come. 🎛️
+
+It is a **source-only kit**: each app copies it into its own `:design` module and compiles it with its own toolchain, so apps on different Android Gradle Plugin and Kotlin versions can share it, and F-Droid builds stay reproducible from source. Colour schemes stay with each app; Gamme shares the roles, shape, spacing, motion, and the components that carry the accessibility rules.
+
+## 📐 The v0.1 spec
+
+*Iris, 2026-10-28. Settled from a fuller first draft (kept as history) after Erwann's go (« Go pour Gamme, MIT ok, après F-Droid ») and Maya's packaging analysis. This file is what the kit's first version contains and how each app takes it. That draft stays the reference for everything v0.1 leaves out (sheets, messages, menus, top bars, copy rules): those are the direction, not yet the kit.*
+
+Shape (Maya's packaging decision): source-only kit, MIT, package `app.beansontoast.design`, copied into a `:design` module per app, a sync script that stamps the version and a check that fails on drift. Colour **values** stay per app; the kit fixes what each role **means**, plus shape, spacing, motion, type and the components below.
+
+**Toolchain floor.** The kit compiles against the oldest app: pastille, Compose BOM 2024.10.01 (Compose UI 1.7, Material3 1.3.1), Kotlin 2.0.21, AGP 8.7, minSdk 28. So: no Material 3 Expressive APIs (`MotionScheme`, `ButtonGroup`, the expressive list items), no `HapticFeedbackType` beyond `LongPress` and `TextHandleMove` (haptics go through `View.performHapticFeedback`), dynamic colour behind an API 31 check. Every signature below uses only APIs present in Material3 1.3.
+
+**The kit holds no user-facing strings.** Every label, reason and detail comes from the caller, so each app keeps its own locales and copy tests. Its glyphs are decorative to TalkBack.
+
+## 🗺️ Find your way
+
+- 🧭 [Principles](/projects/gamme/docs/principles): the three rulings the kit carries into every app.
+- 🎨 Foundations: [colour](/projects/gamme/docs/colour), [type](/projects/gamme/docs/type), [shape](/projects/gamme/docs/shape), [spacing and sizes](/projects/gamme/docs/spacing), [motion and haptics](/projects/gamme/docs/motion), [icons](/projects/gamme/docs/icons).
+- 🧩 [Components](/projects/gamme/docs/components): the seven v0.1 components, their Kotlin signatures and rules.
+- ⚖️ Rulings: [the six divergences](/projects/gamme/docs/divergences) between tutti and pastille, settled, and the [field notes](/projects/gamme/docs/field-notes) from Erwann's reviews on a real phone.
+- 🚚 [Adoption](/projects/gamme/docs/adoption): how pastille, then tutti, take the kit, and what visibly changes.
+- 📜 [Changelog](/projects/gamme/docs/changelog).
+
+## 🚧 Status
+
+The Kotlin kit arrives after pastille's first F-Droid release. Until then these pages are the spec, and every picture of a component is a drawing from its values, labelled "illustration, not a render".

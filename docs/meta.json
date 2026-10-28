@@ -1,0 +1,29 @@
+{
+  "title": "Gamme",
+  "pages": [
+    "index",
+    "principles",
+    "---Foundations---",
+    "colour",
+    "type",
+    "shape",
+    "spacing",
+    "motion",
+    "icons",
+    "---Components---",
+    "components",
+    "theme",
+    "settings-group",
+    "settings-row",
+    "switch-row",
+    "state-mark",
+    "empty-state",
+    "select-chip",
+    "---Rulings---",
+    "divergences",
+    "field-notes",
+    "---Shipping---",
+    "adoption",
+    "changelog"
+  ]
+}

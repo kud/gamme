@@ -1,0 +1,54 @@
+---
+title: 📝 Field notes
+description: "Rules drawn from Erwann's reviews of tutti and pastille on a real phone."
+---
+
+Each comes from something he saw on his phone in tutti or pastille; the app is named only as the source.
+
+## 📐 Layout
+
+- **The leading column holds each row's glyph and nothing else.** A row's values (chips, radios, sliders, previews) start at the text column.
+- **Nothing jumps.** A selected chip or segment keeps its width (lay out both looks, fade between them); a screen draws its content only once the first read lands (no "empty" flash); headers keep a fixed height. (pastille list, folder chips)
+- **A card's trailing items share one vertical axis**, centred on the title line: time and action together, never a time on one line and a button floating below it. (pastille snippet card)
+- **An add affordance inside a chip row is a chip of the same height and centre**, not a differently shaped button. (pastille folder row)
+- **The first group header is never clipped** under the top bar; scroll content starts below the bar's inset. (pastille Settings)
+- **The keyboard never hides the thing you're typing into.** The field, its helper or counter and its primary action stay together above the IME; decoration gives way only when space is genuinely short; one owner per inset. (tutti pairing code)
+
+## 🎚️ Controls
+
+- **A segmented control with four or more options carries no per-option glyphs**; the selected option's check is enough. If labels still don't breathe at 360 dp, use wrapping chips. Two-way controls may carry glyphs (Snippets | Stickers). (pastille Height)
+- **Glyphs match what they describe**: a landscape option shows a landscape device; a preview follows the option being changed. (pastille Height)
+- **Selection never rests on fill alone**, in chips and segments too: a check or a glyph swap, without reflow. (pastille keyboard chips)
+- **Full lists inline when the choice matters**: if a setting picks one of the user's own things (keyboards), show the whole list as visible radios, not a hidden dropdown, with unavailable items listed and a way to enable them. (pastille Switch back to)
+- **Lists of system things match the system's own set and grouping** (e.g. every enabled keyboard with its languages, as Android's picker shows), minus the app itself. (pastille vs the system keyboard picker)
+
+## 🧭 Menus and navigation
+
+- **An overflow menu is short and doesn't duplicate Settings**: only actions for the screen in front of you, grouped by meaning, one glyph family and tint, the 12 dp menu shape with an inset from the edge. Things that are settings live in Settings. (pastille ⋮ menu)
+- **A menu follows the mode on screen**: actions that don't apply to the current tab aren't offered there. (pastille Stickers tab)
+- **Tools on the leading side, content tabs on the trailing side** of a toolbar, so the tabs sit under the thumb (Gboard's convention). (pastille keyboard)
+- **The most immediate content comes first** (the clipboard before saved items); the surface reopens where the user left it and never jumps on its own. (pastille keyboard)
+- **A context shows only what belongs to it**: a playback sheet holds playback (captions, audio track, time), not sound settings. (tutti playback sheet)
+
+## ⏩ Metaphors
+
+- **Right always means later on a timeline.** A display-only timeline doesn't invite a drag (an upright bar marker, not a round handle). A jog wheel behaves like a physical wheel: ticks follow the finger, and the direction matches that metaphor; it says in words which key it is sending. (tutti scrub strip)
+
+## 🔄 State
+
+- **Hold the last confirmed state through transient gaps**: "no answer yet" is not "nothing there"; keep what was last confirmed for a short grace window and clear it at once on a confirmed change. Never show stale data indefinitely. (tutti now-playing card)
+- **Connected or on states carry a mark** (check circle or empty ring), across the whole app. (tutti)
+
+## 🎨 Colour and icons
+
+- **No untinted icons**: the theme provides `onSurface` as the content colour app-wide, so an icon on a plain background is never drawn black on dark. (pastille editor header)
+- **One icon family, one weight, one tint per surface.** (pastille ⋮ menu)
+
+## ✍️ Copy
+
+- **Subtitles are values or one short sentence (≤14 words)**; an explanatory note goes on one line under the control it explains. (pastille Show in the keyboard)
+- **Names say what the thing is**: "Clipboard", not "Recent", when it holds copies rather than recently used items. (pastille keyboard)
+
+## 📸 Showing work
+
+- Every visual change is shown with a real render or a screenshot of the build; a drawing is labelled a mock-up.

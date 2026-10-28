@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Gamme</title>
+  <defs>
+    <clipPath id="card"><rect x="24" y="40" width="208" height="176" rx="44"/></clipPath>
+  </defs>
+  <g clip-path="url(#card)">
+    <rect x="24" y="40" width="208" height="52" fill="#D0BCFF"/>
+    <rect x="24" y="102" width="208" height="52" fill="#D0BCFF"/>
+    <rect x="24" y="164" width="208" height="52" fill="#D0BCFF"/>
+  </g>
+  <circle cx="68" cy="66" r="12" fill="#381E72"/>
+  <rect x="96" y="60" width="88" height="12" rx="6" fill="#381E72"/>
+  <circle cx="68" cy="128" r="12" fill="#381E72"/>
+  <rect x="96" y="122" width="64" height="12" rx="6" fill="#381E72"/>
+  <circle cx="68" cy="190" r="12" fill="#381E72"/>
+  <rect x="96" y="184" width="104" height="12" rx="6" fill="#381E72"/>
+</svg>

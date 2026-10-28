@@ -1,0 +1,56 @@
+---
+title: 🚚 Adoption
+description: "How pastille, then tutti, take the kit, and what visibly changes in each."
+---
+
+Order (Erwann, 2026-10-28): the kit repo, then **pastille after its first F-Droid release, in a later tag**, then **tutti**. Each adoption: copy the kit into `:design` with the sync script, wrap the app in `GammeTheme`, swap the components below, delete the app's copies, then the app's full check (tests, lint, build) and before/after screenshots at phone size, light and dark.
+
+## 💊 pastille
+
+**Swaps**
+
+- `ui/theme/Theme.kt`: wrap in `GammeTheme(colors = GammeColors(PastilleLight, PastilleDark), dynamicColor = false, trueBlack = false)`; drop its own `LocalContentColor` provision; drop the comment and any code that makes `primaryContainer` the selected segment (segments go back to Material's `secondaryContainer`).
+- `ui/SettingsGroup.kt`: `SettingsGroup` → kit's (`glyphs = true` where rows have icons); `SettingsRow(subtitle, icon: ImageVector, leading, enabled)` → kit's (`detail`, `icon = rememberVectorPainter(...)`, radio rows via `selected`, `enabled = false` → `unavailable = "<reason>"`); `PastilleSwitch` + row toggle in `modifier` → `SwitchRow`; `SettingsIconTile`, `SettingsHairline`, `SettingsChevron` (→ `opens = true`) deleted; `SettingsTextInset` 72 → `GammeSize.rowInset` (56) wherever something aligns to it (`SettingsRowDetail` stays in the app).
+- `ui/FolderChip.kt` → `SelectChip` (same look and the same no-reflow overlay; the glyph goes 18 dp as today).
+- `ui/EmptyState.kt` → kit's `EmptyState`. The keyboard panel's private empty state stays: the IME has its own palette and is outside v0.1.
+- `ime/PastilleMotion.kt`: its critically damped 800 spring → `GammeMotion.settle()`; its once-per-activity reduced-motion read → `LocalReducedMotion`.
+- Every disabled row today needs a reason string to compile.
+
+**What visibly changes**
+
+- Row text starts 16 dp further left (72 → 56 from the card's edge): the glyph slot narrows from 36 to 24 dp and the gap from 20 to 16 dp.
+- Group headings move from 20 dp to 32 dp from the screen edge.
+- Disabled rows fade to 0.6 instead of 0.38 and carry a warning-led reason line at full contrast.
+- The selected half of Snippets | Stickers and other segments turns `secondaryContainer` instead of `primaryContainer`.
+- Theme shapes: filter, assist and input chips 8 → 12 dp corners; text fields and stock `DropdownMenu`s 4 → 8 dp; the extended FAB 16 → 20 dp; its one stock `Card` 12 → 16 dp.
+- Switch rows: a click haptic, one TalkBack target with the switch role. Reduced motion now follows the setting live.
+
+## 📺 tutti
+
+**Swaps**
+
+- `ui/theme`: wrap in `GammeTheme(colors = GammeColors(lightColorScheme(), darkColorScheme()), dynamicColor = <the user's setting, default on>, trueBlack = <the user's setting>)`; `WindowBackground` stays in the app.
+- `ui/common/SettingsCards.kt`: `SettingsGroup`, `SettingsRow`, `StateMark`, `OpensChevron`, `RowIcon`, `Notice`, `LocalRowSurface` → kit. Parameters: `mark: Boolean?` → `state` (`true` → `Done`, `false` → `NotYet`); `enabled = false` plus a detail → `unavailable = <that detail>`; `icon: @DrawableRes Int` → `painterResource(icon)`; `role` dropped (radios via `selected`, switches via `SwitchRow`). `RevealRow` stays in tutti.
+- `ui/common/Controls.kt` `SwitchRow(label, supporting, reason)` → kit's (`title`, `detail`, `unavailable`). The switch stops being clickable on its own: **fixes the double TalkBack target**.
+- `TuttiMenu`: it reads `shapes.medium`, which becomes 16 dp; point it at `shapes.small` (12 dp) to keep its look.
+- `ui/common/Digits` `.tabular()` → the kit's; `ReducedMotion` → the kit's (same behaviour); `ui/motion/Motion.kt` springs → `GammeMotion` (its own durations stay).
+- `ConnMark` and other screens that draw state glyphs move to `StateMark` where they mean the same state.
+
+**What visibly changes: Erwann sees these before tutti adopts.** Every settings screen moves; within the 2026-10-25 delegation, but shown first because it is a shipped app's look.
+
+- The tonal discs behind every settings glyph go; glyphs are plain 24 dp in `onSurfaceVariant`.
+- Row text starts 16 dp further left (72 → 56 from the card's edge).
+- One-line rows get 8 dp shorter (64 → 56 dp), so settings lists are denser; two-line rows barely change.
+- A disabled row's reason line no longer fades: full contrast, led by the warning glyph. A disabled switch is faded once (Material's colours), not twice.
+- Theme shapes: text fields 4 → 8 dp corners (12 fields), assist, filter and input chips 8 → 12 dp, the extended FAB 16 → 20 dp, the stock `DropdownMenu` 4 → 8 dp.
+- Tabular figures on every label style (times, counts and levels hold their width).
+- The kit's state marks are Rounded beside tutti's own baseline-filled glyphs until its icon pass (draft open point 4).
+
+Proposed before/after set for Erwann: Settings hub, one category screen, TV settings, a screen with a disabled row and one with a notice, at 412×915, light and dark.
+
+## ❓ Open points
+
+1. **Name.** "Gamme" is still a working title (the repo is already named `gamme`).
+2. **Dynamic colour defaults and true black for pastille:** unchanged from the draft (tutti on, pastille off; true black not offered in pastille). Erwann's call if the family should agree.
+3. **tutti's icon family** (117 baseline-filled drawables to Rounded): Maya's estimate; until then the mix described under [tutti](/projects/gamme/docs/adoption) stands.
+4. **tutti's before/after** (see [tutti](/projects/gamme/docs/adoption)) goes to Erwann before tutti adopts.

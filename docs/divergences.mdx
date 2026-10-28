@@ -1,0 +1,19 @@
+---
+title: ⚖️ The six divergences
+description: "Where tutti and pastille differed, and what Gamme settled."
+---
+
+| # | Topic | tutti today | pastille today | Gamme v0.1 | Why |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Row icon | 20 dp glyph in a 40 dp `secondaryContainer` disc | 24 dp plain glyph, `onSurfaceVariant`, in a 36 dp slot | **24 dp plain glyph in a 24 dp slot, `onSurfaceVariant` (`error` when destructive), no tile** | A disc on every row doubles each row's weight and spends the "selected" colour on decoration. |
+| 2 | Row min height | 64 dp | 56 dp | **56 dp minimum; the content sets the rest** (a title-plus-detail row lands at 68 dp from its own padding and lines) | 64 was sized for the 40 dp disc; without it, 56 is Material's one-line floor and two-line rows grow honestly. |
+| 3 | Disabled | Title, detail and trailing at 0.6, reason as the detail | 0.38 on title and detail, reason optional | **Title and glyph at 0.6; the reason line at full `onSurfaceVariant`, led by the warning glyph; the control uses Material's own disabled colours, never faded twice. A row can only be disabled by passing its reason** (`unavailable: String`). | 0.38 makes the reason unreadable, and an API where "disabled" and "why" are one parameter makes a silent dead control impossible to write. |
+| 4 | Group title inset | 32 dp from the screen edge | 4 dp in from the card (20 dp from the screen edge) | **32 dp from the screen edge** (16 page margin + 16 row padding), aligned with the rows' leading edge, glyph or text; a heading to TalkBack | It lines up with whatever a row starts with, glyph or not, so it never floats in a group with no glyphs. |
+| 5 | Group construction | Clipped `Column`, `spacedBy(2.dp)`, each row paints `surfaceContainer` | `Surface` in `surfaceContainer`, rows separated by a 2 dp `Spacer` painted `surface` | **tutti's: the group clips a `Column` to `large` (20 dp), rows 2 dp apart, each row paints its own `surfaceContainer`; the gap is transparent** | A painted spacer has to repeat the ground's colour and goes wrong on true black, a tonal band or dynamic colour; a real gap can't. |
+| 6 | Settle spring | `snappy` 0.8 / 600 with slight overshoot | critically damped, 800 | **Both, by job: `settle` = damping 1.0, stiffness 800 for anything that moves the page; `snappy` = damping 0.8, stiffness 600 only for a control changing its own shape** | A page that overshoots reads as wobbly; a key or tile that does reads as alive. |
+
+Two smaller corrections to the draft, found while writing the APIs:
+
+- **Glyph size in chips is 18 dp**, not 20: it is Material's own `FilterChipDefaults.IconSize` and `SegmentedButtonDefaults.IconSize`, and pastille's chip already draws 18.
+- **The leading column holds each row's glyph and nothing else** (Erwann, 2026-10-28: « La colonne de gauche c'est pour les icônes de chaque menu, pas plus »). A row's values (chips, radio options, sliders, previews) start at the text column, never under the glyphs.
+- **A group either aligns all its rows to a glyph slot or none.** A glyph-less row in a group with glyphs keeps the empty 24 dp slot, so text starts at 56 dp throughout; a group with no glyphs starts text at 16 dp.

@@ -1,0 +1,37 @@
+---
+title: 🔤 Type
+description: "Material 3's type scale on the system face, with tabular figures where numbers change."
+---
+
+Material 3's default scale and weights (the system face, no custom font), with two additions:
+
+```kotlin
+private const val TABULAR = "tnum"
+
+fun gammeTypography(base: Typography = Typography()): Typography = base.copy(
+    labelLarge = base.labelLarge.copy(fontFeatureSettings = TABULAR),
+    labelMedium = base.labelMedium.copy(fontFeatureSettings = TABULAR),
+    labelSmall = base.labelSmall.copy(fontFeatureSettings = TABULAR),
+    bodySmall = base.bodySmall.copy(fontFeatureSettings = TABULAR),
+)
+
+/** Tabular figures for a larger number that changes under a finger (a volume level). */
+fun TextStyle.tabular(): TextStyle = copy(fontFeatureSettings = TABULAR)
+```
+
+Uses: group heading `titleSmall` (500) in `onSurface`; row title `bodyLarge`; detail and reason `bodyMedium`; chip `labelLarge`, **SemiBold (600) only when selected**, the one non-colour weight cue. No Bold anywhere.
+
+## 📏 The scale, for reference
+
+Material 3's default scale, which Gamme keeps as is (sizes in sp, line heights in sp, weights). ⏱️ marks the styles that get tabular figures.
+
+| Style | Size / line | Weight | Gamme uses it for |
+| --- | --- | --- | --- |
+| `titleMedium` | 16 / 24 | 500 | Empty state title |
+| `titleSmall` | 14 / 20 | 500 | Group heading |
+| `bodyLarge` | 16 / 24 | 400 | Row title |
+| `bodyMedium` | 14 / 20 | 400 | Detail and reason lines |
+| `bodySmall` ⏱️ | 12 / 16 | 400 | Group footnote |
+| `labelLarge` ⏱️ | 14 / 20 | 500 (600 when selected) | Chip label |
+| `labelMedium` ⏱️ | 12 / 16 | 500 | |
+| `labelSmall` ⏱️ | 11 / 16 | 500 | |
