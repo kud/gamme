@@ -21,6 +21,7 @@ const light = {
   surface: "#FEF7FF", onSurface: "#1D1B20", onSurfaceVariant: "#49454F",
   surfaceContainer: "#F3EDF7", surfaceContainerHigh: "#ECE6F0", surfaceContainerHighest: "#E6E0E9",
   outline: "#79747E", outlineVariant: "#CAC4D0", error: "#B3261E",
+  inverseSurface: "#322F35", inverseOnSurface: "#F5EFF7",
 }
 const dark = {
   name: "Dark",
@@ -30,6 +31,7 @@ const dark = {
   surface: "#141218", onSurface: "#E6E0E9", onSurfaceVariant: "#CAC4D0",
   surfaceContainer: "#211F26", surfaceContainerHigh: "#2B2930", surfaceContainerHighest: "#36343B",
   outline: "#938F99", outlineVariant: "#49454F", error: "#F2B8B5",
+  inverseSurface: "#E6E0E9", inverseOnSurface: "#322F35",
 }
 const black = { ...dark, name: "Dark, true black", surface: "#000000" }
 
@@ -414,6 +416,7 @@ files["glyphs.svg"] = panels("The kit's glyphs, Material Symbols Rounded", both,
 const pairs = [
   ["primary", "onPrimary", "On", 4.5],
   ["secondaryContainer", "onSecondaryContainer", "Selected", 4.5],
+  ["inverseSurface", "inverseOnSurface", "The action", 4.5],
   ["primaryContainer", "onPrimaryContainer", "Emphasis", 4.5],
   ["surface", "onSurface", "The ground", 4.5],
   ["surfaceContainer", "onSurface", "A group or card", 4.5],

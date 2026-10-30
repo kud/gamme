@@ -9,7 +9,8 @@ Order (Erwann, 2026-10-28): the kit repo, then **pastille after its first F-Droi
 
 **Swaps**
 
-- `ui/theme/Theme.kt`: wrap in `GammeTheme(colors = GammeColors(PastilleLight, PastilleDark), dynamicColor = false, trueBlack = false)`; drop its own `LocalContentColor` provision; drop the comment and any code that makes `primaryContainer` the selected segment (segments go back to Material's `secondaryContainer`).
+- `ui/theme/Theme.kt`: wrap in `GammeTheme(colors = GammeColors(PastilleLight, PastilleDark), dynamicColor = false, trueBlack = false)`, passing the quieter scheme of its design spec §25 (2026-10-30: near-neutral containers, the brand blue only a muted steel in `primary`), which already follows Gamme's colour rules; drop its own `LocalContentColor` provision; drop the comment and any code that makes `primaryContainer` the selected segment (segments go back to Material's `secondaryContainer`).
+- The extended FAB already passes `inverseSurface` / `inverseOnSurface` (§25); it stays as it is.
 - `ui/SettingsGroup.kt`: `SettingsGroup` → kit's (`glyphs = true` where rows have icons); `SettingsRow(subtitle, icon: ImageVector, leading, enabled)` → kit's (`detail`, `icon = rememberVectorPainter(...)`, radio rows via `selected`, `enabled = false` → `unavailable = "<reason>"`); `PastilleSwitch` + row toggle in `modifier` → `SwitchRow`; `SettingsIconTile`, `SettingsHairline`, `SettingsChevron` (→ `opens = true`) deleted; `SettingsTextInset` 72 → `GammeSize.rowInset` (56) wherever something aligns to it (`SettingsRowDetail` stays in the app).
 - `ui/FolderChip.kt` → `SelectChip` (same look and the same no-reflow overlay; the glyph goes 18 dp as today).
 - `ui/EmptyState.kt` → kit's `EmptyState`. The keyboard panel's private empty state stays: the IME has its own palette and is outside v0.1.
@@ -21,7 +22,7 @@ Order (Erwann, 2026-10-28): the kit repo, then **pastille after its first F-Droi
 - Row text starts 16 dp further left (72 → 56 from the card's edge): the glyph slot narrows from 36 to 24 dp and the gap from 20 to 16 dp.
 - Group headings move from 20 dp to 32 dp from the screen edge.
 - Disabled rows fade to 0.6 instead of 0.38 and carry a warning-led reason line at full contrast.
-- The selected half of Snippets | Stickers and other segments turns `secondaryContainer` instead of `primaryContainer`.
+- The selected half of Snippets | Stickers and other segments turns `secondaryContainer` instead of `primaryContainer`: in dark, from a slate (`#434E5D`) to the same pale neutral as the selected chip (`#D3D9E1`), so segments and chips select alike; the ✓ stays. The FAB and every other colour stay as §25 left them.
 - Theme shapes: filter, assist and input chips 8 → 12 dp corners; text fields and stock `DropdownMenu`s 4 → 8 dp; the extended FAB 16 → 20 dp; its one stock `Card` 12 → 16 dp.
 - Switch rows: a click haptic, one TalkBack target with the switch role. Reduced motion now follows the setting live.
 
@@ -35,6 +36,9 @@ Order (Erwann, 2026-10-28): the kit repo, then **pastille after its first F-Droi
 - `TuttiMenu`: it reads `shapes.medium`, which becomes 16 dp; point it at `shapes.small` (12 dp) to keep its look.
 - `ui/common/Digits` `.tabular()` → the kit's; `ReducedMotion` → the kit's (same behaviour); `ui/motion/Motion.kt` springs → `GammeMotion` (its own durations stay).
 - `ConnMark` and other screens that draw state glyphs move to `StateMark` where they mean the same state.
+- `ui/scenes/ScenesScreen.kt`: the "New scene" `ExtendedFloatingActionButton` passes `containerColor = colorScheme.inverseSurface, contentColor = colorScheme.inverseOnSurface` (it is Material's default `primaryContainer` today). Its only FAB. tutti's rule against inverse colours is about passing messages flashing over the dark remote; the FAB is a resting control on Scenes, where the remote isn't.
+- Selection: tutti keeps its values (dynamic colour, whose secondary palette is already low-chroma, or Material's baseline). What it checks while adopting is that every selection painted in `secondaryContainer` also carries a mark (a ✓, a glyph swap or the SemiBold label), so none rests on the fill; the target sheet's tick and `SelectChip` already do.
+- Updates (the rules both apps now share, 2026-10-30): About › Version reserves two lines for its sentence (`detailMinLines = 2`), so the row never jumps between states; tutti's row has no trailing button, its sheet holds the step. And `UpdateCheckEffect` shows its once-per-build message only on the plain remote (no sheet, menu or editor open, no other message showing), skipping it otherwise rather than replacing a message already on screen.
 
 **What visibly changes: Erwann sees these before tutti adopts.** Every settings screen moves; within the 2026-10-25 delegation, but shown first because it is a shipped app's look.
 
@@ -45,6 +49,7 @@ Order (Erwann, 2026-10-28): the kit repo, then **pastille after its first F-Droi
 - Theme shapes: text fields 4 → 8 dp corners (12 fields), assist, filter and input chips 8 → 12 dp, the extended FAB 16 → 20 dp, the stock `DropdownMenu` 4 → 8 dp.
 - Tabular figures on every label style (times, counts and levels hold their width).
 - The kit's state marks are Rounded beside tutti's own baseline-filled glyphs until its icon pass (draft open point 4).
+- Scenes' "New scene" button turns ink: a dark pill in light, a pale one in dark, in place of the scheme's tinted container.
 
 Proposed before/after set for Erwann: Settings hub, one category screen, TV settings, a screen with a disabled row and one with a notice, at 412×915, light and dark.
 

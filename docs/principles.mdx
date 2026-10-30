@@ -3,10 +3,11 @@ title: 🧭 Principles
 description: "The rulings Gamme carries across every app."
 ---
 
-Three rules hold everywhere Gamme goes. Every component enforces them, and the [field notes](/projects/gamme/docs/field-notes) grew out of them.
+Four rules hold everywhere Gamme goes. Every component enforces them, and the [field notes](/projects/gamme/docs/field-notes) grew out of them.
 
 - **No tiles behind glyphs.** A glyph is plain and monochrome; the selection colour is never decoration.
-- **`primary` means on, `secondaryContainer` means selected**, and neither is borrowed for anything else (a label, a heading, a selected segment in `primaryContainer`).
+- **`primary` means on, `secondaryContainer` means selected, `inverseSurface` is the action** (the extended FAB, in ink), and none is borrowed for anything else (a label, a heading, a selected segment in `primaryContainer`, a FAB in the selection colour).
+- **Selection reads by lightness and shape, never hue.** A selected state carries a mark and a step in lightness; an app's brand hue lives only in `primary`. (Erwann, 2026-10-30; see [colour](/projects/gamme/docs/colour).)
 - **Every disabled control says why**, in words at full contrast beside it; the API cannot express disabled without a reason. Read-only is not disabled.
 
 ## 🖼️ In practice

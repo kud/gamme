@@ -15,4 +15,9 @@ Only what both apps use today. Signatures as they should look in the kit; bodies
 
 ## ⏳ Not in v0.1
 
-Sheet, passing message, menu, top bar, segmented control wrapper, toggle and action chips, list card, extended FAB rules, banner, press/focus indication, `RevealRow`, the copy tests. Each app keeps its own until the second app needs the same thing; the draft holds their direction.
+Sheet, passing message, menu, top bar, segmented control wrapper, toggle and action chips, list card, the extended FAB component, banner, press/focus indication, `RevealRow`, the copy tests. Each app keeps its own until the second app needs the same thing; the draft holds their direction.
+
+Two of them already share a rule, though not yet a component (2026-10-30):
+
+- **The extended FAB is ink**: `inverseSurface` / `inverseOnSurface`, at most one per screen ([colour](/projects/gamme/docs/colour)). Material's `ExtendedFloatingActionButton` defaults to `primaryContainer`, so each call site passes the pair until the kit has its own.
+- **A passing message announces news the app found on its own once**, only on the plain screen, skipped rather than queued ([field notes](/projects/gamme/docs/field-notes)). Each app keeps its own message component: tutti's tonal card and pastille's snackbar.

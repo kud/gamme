@@ -10,7 +10,8 @@ All in `app.beansontoast.design`. Values are exact; the comments say where each 
 | Role | Means | Rule |
 | --- | --- | --- |
 | `primary` / `onPrimary` | **On** | A switch's checked track, a toggle that is on, links. Never a selection, never a label colour. |
-| `secondaryContainer` / `onSecondaryContainer` | **Selected** | A selected chip or segment, the extended FAB. Never decoration (no tiles behind glyphs). |
+| `secondaryContainer` / `onSecondaryContainer` | **Selected** | A selected chip or segment. A step in lightness from `surfaceContainerHigh`, never a hue of its own; the mark beside it carries the state. Never decoration (no tiles behind glyphs), never the FAB. |
+| `inverseSurface` / `inverseOnSurface` | **The action** | The extended FAB: ink, a dark pill in light and a pale one in dark, so the screen's one strong thing is strong by lightness, not colour. At most one per screen. (Material's own snackbar wears the same pair.) |
 | `primaryContainer` | Emphasis, sparingly | The "Done" disc on top of its tick, a "Recommended" card. Never a selection. |
 | `surface` = `background` | The ground | Screens and the 2 dp gap between grouped rows. |
 | `surfaceContainer` | A group or card | Settings rows, list cards. |
@@ -20,7 +21,18 @@ All in `app.beansontoast.design`. Values are exact; the comments say where each 
 | `outline` | A boundary that must read (3:1) | The dashed "not known" ring. |
 | `error` | Destructive | Title and glyph of a destructive row only. A failure is the warning glyph and words, never red alone. |
 
-Contrast floor, per app, light and dark: text 4.5:1, a state or boundary 3:1.
+Contrast floor, per app, light and dark: text 4.5:1, a state's mark or a boundary 3:1.
+
+## 🌫️ Selection reads by lightness and shape, never hue
+
+_Iris, 2026-10-30, from pastille: Erwann, « Je suis pas un fan de l'accent sur pastille », « Pourquoi tout est bleu ? », then « on peut faire juste plus élégant »; Gamme adopts it for every app on his « Oui, Iris peut trancher et mettre à jour Gamme » (2026-10-30)._
+
+pastille spent two saturated blues on the accent's work at once: a navy slab for the selected segment and a sky pill for the FAB and the selected chip. Neither said anything the check, the glyph or the lightness step didn't already say, so the hue was decoration. The rule that came out of it:
+
+- **Structure in ink, a whisper of the brand.** Neutrals carry the hierarchy. An app's brand hue lives in `primary` (on: a switch's track, links, the cursor) and nowhere else; containers carry no meaning by hue.
+- **Selected differs from unselected in lightness and in shape, never by hue alone.** The mark (a ✓ or a glyph swap, the SemiBold label) is the state and meets 3:1 on its own; the fill's step in lightness reinforces it and need not reach 3:1 by itself (pastille's light chip steps 1.37:1 against its unselected neighbour and still reads, by its ✓). No pair of states may differ only in hue: Erwann is colourblind, and so are many of the people using these apps.
+- **In an app's own scheme, keep the containers near-neutral.** `primaryContainer` and `secondaryContainer` sit at low chroma (pastille's at HSL saturation 0.15–0.24, down from 0.65–1.0). Under dynamic colour, Material's secondary palette is already the low-chroma one; leave its values to the system.
+- **The one strong thing on a screen is the action, and it is ink.** The extended FAB takes `inverseSurface` / `inverseOnSurface`. Until v0.1 it took `secondaryContainer`, which spent "selected" on something that isn't selected; ink keeps it obviously the button without colour (pastille's FAB against the ground: 15.0:1 dark, 12.2:1 light, where it was 1.29:1 in light).
 
 ## 🖼️ The roles, at Material 3's baseline
 

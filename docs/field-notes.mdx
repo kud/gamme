@@ -12,6 +12,7 @@ Each comes from something he saw on his phone in tutti or pastille; the app is n
 - **A card's trailing items share one vertical axis**, centred on the title line: time and action together, never a time on one line and a button floating below it. (pastille snippet card)
 - **An add affordance inside a chip row is a chip of the same height and centre**, not a differently shaped button. (pastille folder row)
 - **The first group header is never clipped** under the top bar; scroll content starts below the bar's inset. (pastille Settings)
+- **A row keeps one height across its states** (Erwann, 2026-10-30: the row jumped while checking): its detail reserves the lines its longest state needs (two for an updater), the trailing slot keeps one width, sized to its widest action, and holds that state's button or a centred 20 dp spinner, never a greyed-out button. A row may grow once, when there is something new to act on, never while it works. (pastille Updates row)
 - **The keyboard never hides the thing you're typing into.** The field, its helper or counter and its primary action stay together above the IME; decoration gives way only when space is genuinely short; one owner per inset. (tutti pairing code)
 
 ## 🎚️ Controls
@@ -30,6 +31,10 @@ Each comes from something he saw on his phone in tutti or pastille; the app is n
 - **The most immediate content comes first** (the clipboard before saved items); the surface reopens where the user left it and never jumps on its own. (pastille keyboard)
 - **A context shows only what belongs to it**: a playback sheet holds playback (captions, audio track, time), not sound settings. (tutti playback sheet)
 
+## 💬 Messages
+
+- **News the app finds on its own is announced once.** One passing message per new thing, the first time it is found, with its one action ("Version x is out" · **Install**), never repeated; a quiet entry the user goes looking for (a ⋮ row, the Settings line) is the way back after that. It shows only on the plain screen: never while searching, reordering, with a sheet or menu open, or behind another message; if it can't show then, it is skipped, not queued. (tutti, Erwann, 2026-10-28: « l'update via GitHub devrait être plus obvious »; pastille, Erwann, 2026-10-30, which added the plain-screen rule)
+
 ## ⏩ Metaphors
 
 - **Right always means later on a timeline.** A display-only timeline doesn't invite a drag (an upright bar marker, not a round handle). A jog wheel behaves like a physical wheel: ticks follow the finger, and the direction matches that metaphor; it says in words which key it is sending. (tutti scrub strip)
@@ -43,6 +48,7 @@ Each comes from something he saw on his phone in tutti or pastille; the app is n
 
 - **No untinted icons**: the theme provides `onSurface` as the content colour app-wide, so an icon on a plain background is never drawn black on dark. (pastille editor header)
 - **One icon family, one weight, one tint per surface.** (pastille ⋮ menu)
+- **Selection reads by lightness and shape, never hue; the action is ink.** Two saturated blues for a selected segment and a FAB read as "why is everything blue"; neutrals now carry the hierarchy, the brand hue only `primary`. (pastille accent, Erwann, 2026-10-30: « Pourquoi tout est bleu ? », « on peut faire juste plus élégant »; see [colour](/projects/gamme/docs/colour))
 
 ## ✍️ Copy
 

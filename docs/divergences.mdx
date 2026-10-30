@@ -1,5 +1,5 @@
 ---
-title: ⚖️ The six divergences
+title: ⚖️ The divergences
 description: "Where tutti and pastille differed, and what Gamme settled."
 ---
 
@@ -17,3 +17,12 @@ Two smaller corrections to the draft, found while writing the APIs:
 - **Glyph size in chips is 18 dp**, not 20: it is Material's own `FilterChipDefaults.IconSize` and `SegmentedButtonDefaults.IconSize`, and pastille's chip already draws 18.
 - **The leading column holds each row's glyph and nothing else** (Erwann, 2026-10-28: « La colonne de gauche c'est pour les icônes de chaque menu, pas plus »). A row's values (chips, radio options, sliders, previews) start at the text column, never under the glyphs.
 - **A group either aligns all its rows to a glyph slot or none.** A glyph-less row in a group with glyphs keeps the empty 24 dp slot, so text starts at 56 dp throughout; a group with no glyphs starts text at 16 dp.
+
+## 🌫️ Since v0.1
+
+Settled after pastille quietened its accent (Iris, 2026-10-30, on Erwann's « Je suis pas un fan de l'accent sur pastille »; Gamme takes it for both apps on his « Oui, Iris peut trancher et mettre à jour Gamme », the same day).
+
+| # | Topic | tutti today | pastille today | Gamme | Why |
+| --- | --- | --- | --- | --- | --- |
+| 7 | Extended FAB | Material's default, `primaryContainer` (Scenes' "New scene") | `inverseSurface` / `inverseOnSurface` since 2026-10-30 (was `secondaryContainer`, as v0.1 said) | **`inverseSurface` / `inverseOnSurface`: ink, at most one per screen** | The FAB is the action, not a selection: in `secondaryContainer` it spent "selected" on something that isn't, and in light it stood only 1.29:1 off the ground. Ink makes it the strongest thing on screen by lightness, which every eye reads. |
+| 8 | Selection colour | Dynamic colour by default (Material's low-chroma secondary), baseline purple otherwise | Near-neutral steel containers, brand blue only a muted `primary` | **Selection reads by lightness and shape, never hue: a mark plus a lightness step; an app's own containers near-neutral; its brand hue only in `primary`** | Two saturated blues did the accent's work and said nothing the ✓, the glyph and the step didn't already say. Hue that carries no meaning is decoration, and hue is the channel Erwann can't rely on. |

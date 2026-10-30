@@ -3,6 +3,17 @@ title: 📜 Changelog
 description: "What changed in Gamme, newest first."
 ---
 
+## 🌫️ 2026-10-30: a quieter accent, rows that hold still, news said once
+
+Iris, on Erwann's « Oui, Iris peut trancher et mettre à jour Gamme », after pastille's accent pass.
+
+- **The extended FAB is ink** (`inverseSurface` / `inverseOnSurface`), no longer `secondaryContainer`: it was spending "selected" on the action. A new colour role, "The action", and a fourth principle.
+- **Selection reads by lightness and shape, never hue**: a mark plus a lightness step; an app's own containers near-neutral, its brand hue only in `primary`.
+- Divergences 7 (extended FAB) and 8 (selection colour) settled; adoption updated for pastille's quieter scheme and for what tutti changes (its Scenes FAB, a mark on every selection).
+- **`SettingsRow` keeps one height across its states**: `detailMinLines`, a fixed-width trailing slot holding the button or a 20 dp spinner, never a greyed-out button.
+- **News the app finds on its own is announced once**, on the plain screen only, skipped rather than queued (a field note; the message component stays per app).
+- The colour-roles illustration adds the action's pair.
+
 ## 📚 2026-10-28: the docs, page by page
 
 - The v0.1 spec split into these pages, one per foundation, component and ruling, so each has its own address.

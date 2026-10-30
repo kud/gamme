@@ -14,7 +14,7 @@ Gamme is the design system behind [tutti](https://github.com/kud/tutti), [pastil
 
 ## Features
 
-- **Roles, not colours** — each app keeps its own colour scheme; Gamme fixes what each Material role means (`primary` is on, `secondaryContainer` is selected, nothing else).
+- **Roles, not colours** — each app keeps its own colour scheme; Gamme fixes what each Material role means (`primary` is on, `secondaryContainer` is selected, `inverseSurface` is the action, nothing else), and selection reads by lightness and shape, never hue.
 - **Tokens** — shape, spacing and sizes, type with tabular figures, motion springs with a reduced-motion fallback, one haptic.
 - **Seven components** — `GammeTheme`, `SettingsGroup`, `SettingsRow`, `SwitchRow`, `StateMark`, `EmptyState`, `SelectChip`, on Material3 1.3 so the oldest app can compile them.
 - **Accessibility in the API** — a row can't be disabled without saying why, a switch row is one TalkBack target, selection never rests on colour alone, every target is 48 dp.

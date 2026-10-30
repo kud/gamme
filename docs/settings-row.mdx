@@ -15,6 +15,7 @@ fun SettingsRow(
     title: String,
     modifier: Modifier = Modifier,
     detail: String? = null,
+    detailMinLines: Int = 1,
     detailMaxLines: Int = Int.MAX_VALUE,
     state: MarkState? = null,
     icon: Painter? = null,
@@ -40,6 +41,7 @@ fun SettingsRow(
 - **Selected** (non-null): the row is a radio, `Modifier.selectable(selected, role = Role.RadioButton)`; the leading slot draws `RadioButton(selected, onClick = null)` (20 dp + 2 dp padding = the 24 dp slot). `icon` is ignored.
 - **Opens:** draws `gamme_chevron_end` (24 dp, `onSurfaceVariant`) as the trailing control; only for a row that opens a screen, menu or system picker. Not combined with `trailing`.
 - `onClick` rows get `Role.Button`.
+- **One height across states** (Erwann, 2026-10-30, on pastille's Updates row, which jumped while checking): a row whose state changes in place (an updater, a sync, a connection) keeps its height. `detailMinLines` reserves the lines its longest state needs (2 for an updater), and every state's text fits them at 360 dp. Its `trailing` is one fixed-width box, sized to the widest single action, holding that state's `TextButton` or a centred 20 dp `CircularProgressIndicator` (indeterminate while waiting, determinate while it counts), never a greyed-out button: a button disabled for a moment is a disabled control with no reason. The detail is a polite live region, so TalkBack hears each state as it comes. The row may grow once, when there is something new to act on (pastille's Later and Download), never while it works.
 
 ## 🙅 Do and don't
 
