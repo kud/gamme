@@ -2,8 +2,6 @@
 
 <img src="assets/icon.svg" width="128" alt="Gamme icon" />
 
-🎛️
-
 # Gamme
 
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
